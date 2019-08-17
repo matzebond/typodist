@@ -1,0 +1,19 @@
+[package]
+name = "msdist"
+version = "0.1.0"
+authors = ["Matthias Schmitt <male.schmitt@posteo.de>"]
+edition = "2018"
+
+[dependencies]
+lazy_static = "1.3"
+clap = "2.33"
+structopt = "0.2"
+
+[lib]
+name = "msdist_lib"
+path = "src/lib.rs"
+
+
+[[bin]]
+name = "msdist"
+path = "src/main.rs"
