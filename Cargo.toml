@@ -1,5 +1,5 @@
 [package]
-name = "msdist"
+name = "typodist"
 version = "0.1.0"
 authors = ["Matthias Schmitt <male.schmitt@posteo.de>"]
 edition = "2018"
@@ -10,10 +10,10 @@ clap = "2.33"
 structopt = "0.2"
 
 [lib]
-name = "msdist_lib"
+name = "typodist_lib"
 path = "src/lib.rs"
 
 
 [[bin]]
-name = "msdist"
+name = "typodist"
 path = "src/main.rs"

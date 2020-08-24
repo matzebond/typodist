@@ -1,8 +1,8 @@
 extern crate clap;
 extern crate structopt;
 
-extern crate msdist_lib;
-use msdist_lib as lib;
+extern crate typodist_lib;
+use typodist_lib as lib;
 use structopt::StructOpt;
 use structopt::clap::AppSettings;
 use clap::arg_enum;
@@ -73,7 +73,6 @@ enum Command {
 
 fn main() {
     let opt = Command::from_args();
-    println!("{:?}", opt);
 
     use Command::*;
     match opt {

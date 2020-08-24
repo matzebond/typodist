@@ -100,7 +100,6 @@ pub fn generate(a: &str, max_cost: f32, metric: &Metric) -> Vec<DistanceCost> {
         }).chain(iter::once((cur.word.len(), &cur.word[..], "")));
 
         for ((i, front, back), num) in splits.zip(0..) {
-            // println!("{}: {} - {}", i, front, back);
 
             if num > 0 {
                 //deletion
@@ -128,7 +127,6 @@ pub fn generate(a: &str, max_cost: f32, metric: &Metric) -> Vec<DistanceCost> {
                     processed.insert(word);
                 }
             }
-
 
             for &c in &metric.possible_chars {
                 //insertions
