@@ -19,7 +19,7 @@ and =tset= is even more likely since =s= and =e= where only swapped.
 cargo run -- generate "test" | head -n 10
 #+END_SRC
 
-#+RESULTS:
+# #+RESULTS:
 #+begin_example
 test
 ttest
@@ -40,7 +40,7 @@ Different keyboard layouts and metrics can be selected
 cargo run -- generate --help
 #+END_SRC
 
-#+RESULTS:
+# #+RESULTS:
 #+begin_example
 typodist-generate 0.1.0
 Matthias Schmitt <male.schmitt@posteo.de>
@@ -82,7 +82,7 @@ and then use the distance of the keys on the keyboard layout.
 
 * License
 
-Licensed under the [[https://www.gnu.org/licenses/gpl-3.0.en.html][GNU General Public License Version 3]].
-This file may not be copied, modified, or distributed except according to those terms.
+Licensed under the [[https://www.gnu.org/licenses/agpl-3.0.en.html][GNU Affero General Public License Version 3]]. This file may
+not be copied, modified, or distributed except according to those terms.
 
 
