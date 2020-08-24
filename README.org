@@ -1,0 +1,88 @@
+#+TITLE: typodist
+#+SELECT_TAGS: export
+# Evaluate source code blocks interactivly and not on export
+#+PROPERTY: header-args :eval never-export
+#+PROPERTY: header-args :results output
+#+PROPERTY: header-args :results verbatim
+#+PROPERTY: header-args :exports both
+
+* What
+
+This program generates a list of possible typos of a given word.
+
+The generated typos are sorted in a way that likely typos appear higher in the list
+of all typos than unlikely typos i.e. given =test= =gest= is a more common typo than =lest=
+because the =t= key on the keyboard is next to the =g= key but far from the =l= key
+and =tset= is even more likely since =s= and =e= where only swapped.
+
+#+BEGIN_SRC sh :results verbatim
+cargo run -- generate "test" | head -n 10
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+test
+ttest
+testt
+teest
+tesst
+tets
+etst
+tset
+twst
+t3st
+#+end_example
+
+
+Different keyboard layouts and metrics can be selected
+
+#+BEGIN_SRC sh :results verbatim
+cargo run -- generate --help
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+typodist-generate 0.1.0
+Matthias Schmitt <male.schmitt@posteo.de>
+
+USAGE:
+    typodist generate [FLAGS] [OPTIONS] <input>
+
+FLAGS:
+        --detailed         print detailed information about each generated typo (with metric distance)
+    -h, --help             Prints help information
+        --mobile-metric    
+        --simple-metric    Use a simpler distance metric which treats insertion, deletion, substitution and
+                           transposition equally
+    -V, --version          Prints version information
+
+OPTIONS:
+    -l, --layout <layout>        Layout to use for distance metric. [default: QWERTZ]  [possible values: QWERTZ,
+                                 QWERTZ_ANYSOFT_EXTRA]
+    -m, --max-dist <max_dist>    maximum distance of the generated words [default: 1.1]
+
+ARGS:
+    <input>    input to generate "near" typos
+#+end_example
+
+* How
+
+Every generated typo is compared to the input and receives a 'typo-likeliness' score.
+This score is based on the [[https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance][Damerau–Levenshtein]] distance (Levenshtein distance + transpositions)
+but in addition to the edit distance of the word the distance of the characters
+on the keyboard are used to rate the likeliness of a insertion, substitution.
+Deletions and transposition get rated at a fixed cost but different metrics can be implemented.
+
+
+* Ideas
+
+Instead of the distance of the characters it would be more accurate to transform the
+characters into actual key presses e.g. 'A' -> [shift, a] or '}' -> [alt-gr, 8] (on qwertz)
+and then use the distance of the keys on the keyboard layout.
+
+* License
+
+Licensed under the [[https://www.gnu.org/licenses/gpl-3.0.en.html][GNU General Public License Version 3]].
+This file may not be copied, modified, or distributed except according to those terms.
+
+
